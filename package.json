@@ -1,0 +1,27 @@
+{
+  "name": "nice-registry",
+  "version": "1.0.0",
+  "description": "A nice proxy to the npm registry",
+  "main": "index.js",
+  "repository": "https://github.com/zeke/nice-repository",
+  "author": "zeke",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "standard": "^8.6.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.2",
+    "mkdirp": "^0.5.1",
+    "nice-package": "^1.2.5",
+    "registry-url": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "start": "node --harmony-async-await server.js"
+  }
+}

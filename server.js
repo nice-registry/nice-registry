@@ -4,8 +4,7 @@ const app = express()
 // const Package = require('./lib/package')
 const getFullPackage = require('./lib/get-full-package')
 const port = Number(process.env.PORT) || 3000
-
-
+const debug = require('./lib/debug')
 
 app.get('/*', function (req, res) {
   var names
@@ -41,7 +40,7 @@ app.get('/*', function (req, res) {
 
 if (!process.parent) {
   app.listen(port, function () {
-    console.log(`listening on localhost:${port}`)
+    debug(`listening on localhost:${port}`)
   })
 }
 

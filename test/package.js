@@ -8,7 +8,6 @@ describe('Package', () => {
   it('works', (done) => {
     new Package('express')
       .then(pkg => {
-        // console.log(pkg)
         expect(pkg).to.be.an('object')
         done()
       })
@@ -24,7 +23,6 @@ describe('FullPackage', () => {
   it('gets package data and dependents data', (done) => {
     getFullPackage('express')
       .then(pkg => {
-        // console.log(pkg)
         expect(pkg).to.be.an('object')
         expect(pkg.directDependents).to.be.an('array')
         done()

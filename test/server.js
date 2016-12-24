@@ -52,7 +52,7 @@ describe('Server', () => {
       })
   })
 
-  it('return dependent lists and counts', (done) => {
+  it('returns dependent lists and counts', (done) => {
     supertest(app)
       .get('/glob')
       .end(function (err, res) {
@@ -63,6 +63,19 @@ describe('Server', () => {
         expect(pkg.directDevDependents.length).to.be.above(100)
         expect(pkg.directDevDependents.length).to.equal(pkg.directDevDependentsCount)
         expect(pkg.totalDirectDependentsCount).to.equal(pkg.directDependentsCount + pkg.directDevDependentsCount)
+        done()
+      })
+  })
+
+  it('returns download counts', (done) => {
+    supertest(app)
+      .get('/mocha')
+      .end(function (err, res) {
+        if (err) throw err
+        const pkg = res.body
+        expect(pkg.onDay).to.be.an('object')
+        expect(Object.keys(pkg.onDay).length).to.be.above(3 * 360) // ~ 3 years
+        expect(pkg.averagePerDay).to.be.above(10 * 1000)
         done()
       })
   })

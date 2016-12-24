@@ -1,8 +1,6 @@
 const expect = require('chai').expect
 const Package = require('../lib/package')
-const NicePackage = require('nice-package')
 const getFullPackage = require('../lib/get-full-package')
-const Dependents = require('../lib/dependents')
 
 describe('Package', () => {
   it('works', (done) => {
@@ -17,9 +15,7 @@ describe('Package', () => {
   })
 })
 
-
 describe('FullPackage', () => {
-
   it('gets package data and dependents data', (done) => {
     getFullPackage('express')
       .then(pkg => {

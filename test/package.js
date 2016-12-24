@@ -1,5 +1,5 @@
 const expect = require('chai').expect
-const Package = require('../lib/package')
+const Package = require('../lib/fetchers/package')
 const getFullPackage = require('../lib/get-full-package')
 
 describe('Package', () => {

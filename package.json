@@ -1,7 +1,7 @@
 {
   "name": "nice-registry",
   "version": "1.0.0",
-  "description": "A nice proxy to the npm registry",
+  "description": "A proxy to the npm registry that serves up nice package metadata.",
   "main": "index.js",
   "repository": "https://github.com/zeke/nice-repository",
   "author": "zeke",

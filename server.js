@@ -7,7 +7,7 @@ const port = Number(process.env.PORT) || 3000
 const debug = require('./lib/debug')
 const NicePackage = require('nice-package')
 
-app.get('/*', function (req, res) {
+app.get('/*', (req, res) => {
   var names
 
   if (req.query.packages) {
@@ -18,6 +18,7 @@ app.get('/*', function (req, res) {
     names = [req.path.replace(/^\//, '')]
   }
 
+  // e.g. `GET /` (with no query params and no package name)
   if (names.length === 1 && !names[0]) {
     return res.redirect('https://github.com/zeke/nice-registry#readme')
   }

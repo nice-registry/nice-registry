@@ -5,11 +5,11 @@ const app = require('../server.js')
 describe('nice-registry server', function () {
   this.timeout(15 * 1000)
 
-  it('redirects to repo when accessing root path', (done) => {
+  it('redirects to github repo readme when accessing root path', (done) => {
     supertest(app)
       .get('/')
       .expect(302)
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         expect(res.header.location).to.equal('https://github.com/zeke/nice-registry#readme')
         done()
@@ -21,7 +21,7 @@ describe('nice-registry server', function () {
       .get('/cheerio')
       .expect('Content-Type', /json/)
       .expect(200)
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         expect(res.body.name).to.equal('cheerio')
         done()
@@ -33,7 +33,7 @@ describe('nice-registry server', function () {
       .get('/?packages=alphabet,react')
       .expect('Content-Type', /json/)
       .expect(200)
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         expect(res.body).to.be.an('array')
         expect(res.body[0].name).to.equal('alphabet')
@@ -45,7 +45,7 @@ describe('nice-registry server', function () {
   it('honors the `pick` query param', (done) => {
     supertest(app)
       .get('/express?pick=name,description')
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         expect(Object.keys(res.body)).to.deep.equal(['name', 'description'])
         done()
@@ -55,7 +55,7 @@ describe('nice-registry server', function () {
   it('honors the `omit` query param', (done) => {
     supertest(app)
       .get('/lodash?omit=description,keywords')
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         const props = Object.keys(res.body)
         expect(props).to.include('name')
@@ -68,7 +68,7 @@ describe('nice-registry server', function () {
   it('returns dependent lists and counts', (done) => {
     supertest(app)
       .get('/glob')
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         const pkg = res.body
         expect(pkg.directDependents.length).to.be.above(100)
@@ -83,7 +83,7 @@ describe('nice-registry server', function () {
   it('returns download counts', (done) => {
     supertest(app)
       .get('/mocha')
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         const pkg = res.body
         expect(pkg.onDay).to.be.an('object')
@@ -96,7 +96,7 @@ describe('nice-registry server', function () {
   it('returns profiles of npm package owners', (done) => {
     supertest(app)
       .get('/component')
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         const pkg = res.body
         expect(pkg.owners).to.be.an('array')
@@ -116,7 +116,7 @@ describe('nice-registry server', function () {
   it('returns metadata for GitHub repos, if token is present', (done) => {
     supertest(app)
       .get('/color-namer')
-      .end(function (err, res) {
+      .end((err, res) => {
         if (err) throw err
         const pkg = res.body
         const repo = pkg.githubRepo

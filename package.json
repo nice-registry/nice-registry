@@ -16,7 +16,7 @@
     "all-the-package-names": "^1.3083.0",
     "all-the-package-repos": "^1.1.0",
     "dependent-counts": "^1.0.0",
-    "dependent-packages": "^2.1.1",
+    "dependent-packages": "^2.2.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "fs-extra": "^1.0.0",

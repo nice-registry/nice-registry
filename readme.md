@@ -18,14 +18,13 @@ Environment Variable | Default
 `NICE_GITHUB_ACCESS_TOKEN` | `undefined`
 `NICE_CACHE_TTL_PACKAGES` | `1 week`
 `NICE_CACHE_TTL_REPOS` | `1 week`
+`NICE_CACHE_TTL_CONTRIBUTORS` | `1 month`
 `NICE_CACHE_TTL_DEPENDENTS` | `1 month`
 `NICE_CACHE_TTL_DOWNLOADS` | `3 months`
 `NICE_CACHE_TTL_OWNERS` | `1 year`
 
-
-
-Packages are updated often but user profiles seldom change, so nice registry allows
-caches to be configured granularly.
+The nice registry allows caches to be configured granularly, as package and repo data
+change frequently while user profiles seldom change.
 
 The TTL values are [human intervals](https://github.com/rschmukler/human-interval) specifying
 "time to live", or how long each type of data can live in the cache before being refetched.

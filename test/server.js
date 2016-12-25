@@ -125,4 +125,17 @@ describe('nice-registry server', function () {
         done()
       })
   })
+
+  it('returns GitHub contributors, if token is present', (done) => {
+    supertest(app)
+      .get('/express')
+      .end((err, res) => {
+        if (err) throw err
+        const pkg = res.body
+        const contributors = pkg.githubContributors
+        expect(contributors).to.exist
+        expect(Object.keys(contributors[0])).to.deep.equal(['login', 'avatarUrl', `type`, `contributions`])
+        done()
+      })
+  })
 })

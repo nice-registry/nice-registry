@@ -1,3 +1,5 @@
+require('dotenv').load()
+
 const express = require('express')
 const app = express()
 const getFullPackage = require('./lib/get-full-package')
@@ -14,6 +16,10 @@ app.get('/*', function (req, res) {
   } else {
     // e.g. /express
     names = [req.path.replace(/^\//, '')]
+  }
+
+  if (names.length === 1 && !names[0]) {
+    return res.redirect('https://github.com/zeke/nice-registry#readme')
   }
 
   Promise.all(names.map(name => getFullPackage(name)))

@@ -13,9 +13,14 @@
     "supertest": "^2.0.1"
   },
   "dependencies": {
+    "all-the-package-names": "^1.3083.0",
+    "all-the-package-repos": "^1.1.0",
+    "dependent-counts": "^1.0.0",
     "dependent-packages": "^2.1.1",
+    "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "fs-extra": "^1.0.0",
+    "github-url-to-object": "^2.2.6",
     "got": "^6.6.3",
     "gravatar-url": "^1.1.0",
     "human-interval": "^0.1.6",
@@ -23,6 +28,7 @@
     "mkdirp": "^0.5.1",
     "nice-package": "^2.2.2",
     "npm-user": "^2.1.0",
+    "octokat": "^0.4.18",
     "registry-url": "^3.1.0",
     "serve-favicon": "^2.3.2"
   },

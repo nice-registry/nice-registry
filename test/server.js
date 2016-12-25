@@ -2,8 +2,19 @@ const expect = require('chai').expect
 const supertest = require('supertest')
 const app = require('../server.js')
 
-describe('Server', function () {
+describe('nice-registry server', function () {
   this.timeout(15 * 1000)
+
+  it('redirects to repo when accessing root path', (done) => {
+    supertest(app)
+      .get('/')
+      .expect(302)
+      .end(function (err, res) {
+        if (err) throw err
+        expect(res.header.location).to.equal('https://github.com/zeke/nice-registry#readme')
+        done()
+      })
+  })
 
   it('accepts a single package name as the path', (done) => {
     supertest(app)
@@ -82,7 +93,7 @@ describe('Server', function () {
       })
   })
 
-  it('fetches profiles of npm package owners', (done) => {
+  it('returns profiles of npm package owners', (done) => {
     supertest(app)
       .get('/component')
       .end(function (err, res) {
@@ -98,6 +109,19 @@ describe('Server', function () {
         expect(props).to.include('twitter')
         expect(props).to.include('freenode')
         expect(props).to.include('gravatar')
+        done()
+      })
+  })
+
+  it('returns metadata for GitHub repos, if token is present', (done) => {
+    supertest(app)
+      .get('/color-namer')
+      .end(function (err, res) {
+        if (err) throw err
+        const pkg = res.body
+        const repo = pkg.githubRepo
+        expect(repo).to.exist
+        expect(repo.fullName).to.equal('zeke/color-namer')
         done()
       })
   })

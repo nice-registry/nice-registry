@@ -10,10 +10,22 @@ npm install nice-registry --save
 
 ## Configuration
 
-The nice registry uses sensible defaults, but can be configured using the following environment variables:
+The nice registry uses sensible defaults, but can be configured using environment variables.
 
-- `NICE_CACHE_PATH` is a full path specifying where to store cached metadata. Default is `~/.nice-registry`.
-- `NICE_CACHE_TTL` is a [human interval](https://github.com/rschmukler/human-interval) string specifying "time to live", or how long data can live in the cache before being refetched. Default is `48 hours`.
+Environment Variable | Default
+--- | ---
+`NICE_CACHE_PATH` | `~/.nice-registry`
+`NICE_CACHE_TTL_PACKAGES` | `3 days`
+`NICE_CACHE_TTL_DEPENDENTS` | `1 month`
+`NICE_CACHE_TTL_DOWNLOADS` | `3 months`
+`NICE_CACHE_TTL_OWNERS` | `1 year`
+
+
+Packages are updated often but user profiles seldom change, so nice registry allows
+caches to be configured granularly.
+
+The TTL values are [human intervals](https://github.com/rschmukler/human-interval) specifying
+"time to live", or how long each type of data can live in the cache before being refetched.
 
 ## Tests
 

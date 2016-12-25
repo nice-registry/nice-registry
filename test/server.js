@@ -2,7 +2,9 @@ const expect = require('chai').expect
 const supertest = require('supertest')
 const app = require('../server.js')
 
-describe('Server', () => {
+describe('Server', function () {
+  this.timeout(15 * 1000)
+
   it('accepts a single package name as the path', (done) => {
     supertest(app)
       .get('/cheerio')
@@ -76,6 +78,26 @@ describe('Server', () => {
         expect(pkg.onDay).to.be.an('object')
         expect(Object.keys(pkg.onDay).length).to.be.above(3 * 360) // ~ 3 years
         expect(pkg.averagePerDay).to.be.above(10 * 1000)
+        done()
+      })
+  })
+
+  it('fetches profiles of npm package owners', (done) => {
+    supertest(app)
+      .get('/component')
+      .end(function (err, res) {
+        if (err) throw err
+        const pkg = res.body
+        expect(pkg.owners).to.be.an('array')
+        expect(pkg.owners.length).to.be.above(5)
+        const props = Object.keys(pkg.owners[0])
+        expect(props).to.include('name')
+        expect(props).to.include('email')
+        expect(props).to.include('homepage')
+        expect(props).to.include('github')
+        expect(props).to.include('twitter')
+        expect(props).to.include('freenode')
+        expect(props).to.include('gravatar')
         done()
       })
   })

@@ -1,5 +1,5 @@
-require('dotenv').load()
-
+const path = require('path')
+const fs = require('fs')
 const express = require('express')
 const app = express()
 const getFullPackage = require('./lib/get-full-package')
@@ -7,6 +7,8 @@ const port = Number(process.env.PORT) || 3000
 const debug = require('./lib/debug')
 const NicePackage = require('nice-package')
 const allThePackageNames = require('all-the-package-names')
+
+if (fs.existsSync(path.join(__dirname, '.env'))) require('dotenv').load()
 
 app.get('/packages/find-by-name', (req, res) => {
   res.json(allThePackageNames.filter(name => name.match(req.query.q)))

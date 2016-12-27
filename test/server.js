@@ -18,7 +18,7 @@ describe('nice-registry server', function () {
 
   it('accepts a single package name as the path', (done) => {
     supertest(app)
-      .get('/cheerio')
+      .get('/package/cheerio')
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -30,7 +30,7 @@ describe('nice-registry server', function () {
 
   it('accepts a `packages` query param for fetching multiple packages at once', (done) => {
     supertest(app)
-      .get('/?packages=alphabet,react')
+      .get('/packages?names=alphabet,react')
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -44,7 +44,7 @@ describe('nice-registry server', function () {
 
   it('honors the `pick` query param', (done) => {
     supertest(app)
-      .get('/express?pick=name,description')
+      .get('/package/express?pick=name,description')
       .end((err, res) => {
         if (err) throw err
         expect(Object.keys(res.body)).to.deep.equal(['name', 'description'])
@@ -54,7 +54,7 @@ describe('nice-registry server', function () {
 
   it('honors the `omit` query param', (done) => {
     supertest(app)
-      .get('/lodash?omit=description,keywords')
+      .get('/package/lodash?omit=description,keywords')
       .end((err, res) => {
         if (err) throw err
         const props = Object.keys(res.body)
@@ -67,7 +67,7 @@ describe('nice-registry server', function () {
 
   it('returns dependent lists and counts', (done) => {
     supertest(app)
-      .get('/glob')
+      .get('/package/glob')
       .end((err, res) => {
         if (err) throw err
         const pkg = res.body
@@ -82,7 +82,7 @@ describe('nice-registry server', function () {
 
   it('returns download counts', (done) => {
     supertest(app)
-      .get('/mocha')
+      .get('/package/mocha')
       .end((err, res) => {
         if (err) throw err
         const pkg = res.body
@@ -95,7 +95,7 @@ describe('nice-registry server', function () {
 
   it('returns profiles of npm package owners', (done) => {
     supertest(app)
-      .get('/component')
+      .get('/package/component')
       .end((err, res) => {
         if (err) throw err
         const pkg = res.body
@@ -115,7 +115,7 @@ describe('nice-registry server', function () {
 
   it('returns metadata for GitHub repos, if token is present', (done) => {
     supertest(app)
-      .get('/color-namer')
+      .get('/package/color-namer')
       .end((err, res) => {
         if (err) throw err
         const pkg = res.body
@@ -128,7 +128,7 @@ describe('nice-registry server', function () {
 
   it('returns GitHub contributors, if token is present', (done) => {
     supertest(app)
-      .get('/express')
+      .get('/package/chai')
       .end((err, res) => {
         if (err) throw err
         const pkg = res.body

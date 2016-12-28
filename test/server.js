@@ -86,9 +86,9 @@ describe('nice-registry server', function () {
       .end((err, res) => {
         if (err) throw err
         const pkg = res.body
-        expect(pkg.onDay).to.be.an('object')
-        expect(Object.keys(pkg.onDay).length).to.be.above(3 * 360) // ~ 3 years
-        expect(pkg.averagePerDay).to.be.above(10 * 1000)
+        expect(pkg.downloadsOnDay).to.be.an('object')
+        expect(Object.keys(pkg.downloadsOnDay).length).to.be.above(3 * 360) // ~ 3 years
+        expect(pkg.averageDownloadsPerDay).to.be.above(10 * 1000)
         done()
       })
   })

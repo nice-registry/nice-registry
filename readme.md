@@ -14,7 +14,7 @@ The nice registry uses sensible defaults, but can be configured using environmen
 
 Environment Variable | Default
 --- | ---
-`NICE_CACHE_PATH` | `~/.nice-registry`
+`NICE_CACHE_PATH` | `path.join(process.cwd(), '.cache'`
 `NICE_GITHUB_ACCESS_TOKEN` | `undefined`
 `NICE_CACHE_TTL_PACKAGES` | `1 week`
 `NICE_CACHE_TTL_REPOS` | `1 week`

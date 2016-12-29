@@ -10,9 +10,14 @@ const port = Number(process.env.PORT) || 3000
 const NicePackage = require('nice-package')
 const allThePackageNames = require('all-the-package-names')
 
-app.get('/packages/find-by-name', (req, res) => {
-  res.json(allThePackageNames.filter(name => name.match(req.query.q)))
-  // sort names by dependents count
+app.get('/names', (req, res) => {
+  if (!req.query.matching) {
+    return res.status(400).json({
+      error: 'missing required query param: matching'
+    })
+  }
+  const results = allThePackageNames.filter(name => name.match(req.query.matching))
+  res.json(results)
 })
 
 app.get('/', (req, res) => {
@@ -31,7 +36,7 @@ app.get('/package/:name', (req, res) => {
 
 app.get('/packages', (req, res) => {
   if (!req.query.names) {
-    return res.status(40).json({
+    return res.status(400).json({
       error: 'missing required query param: names'
     })
   }
@@ -40,8 +45,8 @@ app.get('/packages', (req, res) => {
 
   Promise.all(names.map(name => getFullPackage(name)))
     .then(packages => {
-      packages = packages.map(pkg => new NicePackage(pkg, req.query))
-      res.json(packages)
+      const nicePackages = packages.map(pkg => new NicePackage(pkg, req.query))
+      res.json(nicePackages)
     })
     .catch(err => {
       res.status(400).json(err)

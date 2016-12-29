@@ -13,7 +13,7 @@
     "supertest": "^2.0.1"
   },
   "dependencies": {
-    "all-the-package-names": "^1.3083.0",
+    "all-the-package-names": "^1.3087.0",
     "all-the-package-repos": "^1.1.0",
     "dependent-counts": "^1.0.0",
     "dependent-packages": "^2.2.1",

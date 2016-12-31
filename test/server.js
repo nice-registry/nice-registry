@@ -1,6 +1,6 @@
 const expect = require('chai').expect
 const supertest = require('supertest')
-const app = require('../server.js')
+const app = require('../script/server.js')
 
 describe('Server', function () {
   this.timeout(15 * 1000)
@@ -27,6 +27,18 @@ describe('Server', function () {
         .end((err, res) => {
           if (err) throw err
           expect(res.body.name).to.equal('cheerio')
+          done()
+        })
+    })
+
+    it('returns a 404 and helpful error message for scoped packages', (done) => {
+      supertest(app)
+        .get('/package/@types/validator')
+        .expect('Content-Type', /json/)
+        .expect(404)
+        .end((err, res) => {
+          if (err) throw err
+          expect(res.body.error).to.include('Sorry')
           done()
         })
     })

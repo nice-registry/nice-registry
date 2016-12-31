@@ -38,7 +38,7 @@
     "node": ">=6"
   },
   "scripts": {
-    "start": "node -r dotenv/config server.js",
+    "start": "node -r dotenv/config script/server.js",
     "test": "mocha && standard"
   },
   "standard": {

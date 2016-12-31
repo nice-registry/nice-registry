@@ -1,11 +1,8 @@
-const path = require('path')
-const fs = require('fs')
-
-if (fs.existsSync(path.join(__dirname, '.env'))) require('dotenv').load()
+require('dotenv').load()
 
 const express = require('express')
 const app = express()
-const getFullPackage = require('./lib/get-full-package')
+const getFullPackage = require('../lib/get-full-package')
 const port = Number(process.env.PORT) || 3000
 const NicePackage = require('nice-package')
 const allThePackageNames = require('all-the-package-names')
@@ -32,6 +29,12 @@ app.get('/package/:name', (req, res) => {
     .catch(err => {
       res.status(404).json(err)
     })
+})
+
+app.get('/package/:scope/:name', (req, res) => {
+  return res.status(404).json({
+    error: 'Sorry, the npm registry does not support scoped packages. Please file an issue at https://github.com/npm/registry'
+  })
 })
 
 app.get('/packages', (req, res) => {

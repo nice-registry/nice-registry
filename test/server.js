@@ -1,3 +1,5 @@
+require('dotenv').load()
+
 const expect = require('chai').expect
 const supertest = require('supertest')
 const app = require('../script/server.js')
@@ -39,6 +41,18 @@ describe('Server', function () {
         .end((err, res) => {
           if (err) throw err
           expect(res.body.error).to.include('Sorry')
+          done()
+        })
+    })
+
+    it('returns a 404 for nonexistent packages', (done) => {
+      supertest(app)
+        .get('/package/wakka-wakka-not-real')
+        .expect('Content-Type', /json/)
+        .expect(404)
+        .end((err, res) => {
+          if (err) throw err
+          expect(res.body.error).to.include('package not found')
           done()
         })
     })

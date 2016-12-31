@@ -1,5 +1,3 @@
-require('dotenv').load()
-
 const express = require('express')
 const app = express()
 const getFullPackage = require('../lib/get-full-package')
@@ -26,8 +24,11 @@ app.get('/package/:name', (req, res) => {
     .then(pkg => {
       res.json(new NicePackage(pkg, req.query))
     })
-    .catch(err => {
-      res.status(404).json(err)
+    .catch(error => {
+      res.status(404).json({
+        error: `package not found: ${req.params.name}`,
+        message: error
+      })
     })
 })
 

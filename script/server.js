@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const getFullPackage = require('../lib/get-full-package')
-const port = Number(process.env.PORT) || 3000
 const NicePackage = require('nice-package')
 const allThePackageNames = require('all-the-package-names')
 
@@ -56,11 +55,5 @@ app.get('/packages', (req, res) => {
       res.status(400).json(err)
     })
 })
-
-if (!process.parent) {
-  app.listen(port, function () {
-    console.log(`listening on localhost:${port}`)
-  })
-}
 
 module.exports = app

@@ -3,7 +3,7 @@ module.exports = function seed () {
   const path = require('path')
   const superagent = require('superagent')
   const requireDir = require('require-dir')
-  const packageCacheDir = path.join(__dirname, '../.cache/package')
+  const packageCacheDir = path.join(process.cwd(), '.cache/package')
   const cachedNames = Object.keys(requireDir(packageCacheDir))
   const uncachedNames = require('all-the-package-names').filter(name => !cachedNames.includes(name))
   const fetch = function () {

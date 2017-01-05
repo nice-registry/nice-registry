@@ -17,7 +17,7 @@ module.exports = function seed () {
             console.error(`\nServer not found! Try this:\n\nnice-registry server -p ${port}\n\n`)
             process.exit()
           } else {
-            return console.error(err.code)
+            return console.error(err)
           }
         }
         console.log(packageName)

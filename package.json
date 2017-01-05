@@ -1,6 +1,6 @@
 {
   "name": "nice-registry",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A proxy to the npm registry that serves up nice package metadata.",
   "main": "index.js",
   "bin": "script/cli.js",

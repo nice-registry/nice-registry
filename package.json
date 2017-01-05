@@ -17,6 +17,7 @@
   "dependencies": {
     "all-the-package-names": "^1.3087.0",
     "all-the-package-repos": "^1.1.0",
+    "dedent": "^0.6.0",
     "dependent-counts": "^1.0.0",
     "dependent-packages": "^2.2.1",
     "dotenv": "^2.0.0",
@@ -35,14 +36,19 @@
     "octokat": "^0.4.18",
     "pad": "^1.0.2",
     "registry-url": "^3.1.0",
-    "serve-favicon": "^2.3.2"
+    "require-dir": "^0.3.1",
+    "serve-favicon": "^2.3.2",
+    "superagent": "^3.3.1"
   },
   "engines": {
     "node": ">=6"
   },
   "scripts": {
     "start": "node -r dotenv/config script/server.js",
-    "test": "mocha && standard"
+    "seed": "node -r dotenv/config script/seed.js",
+    "test": "npm run test:uncached && npm run test:cached && standard",
+    "test:uncached": "rm -rf .cache && DEBUG=1 mocha -r dotenv/config",
+    "test:cached": "mocha -r dotenv/config && standard"
   },
   "standard": {
     "env": {

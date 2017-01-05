@@ -1,26 +1,27 @@
 #!/usr/bin/env node
 
 const argv = require('minimist')(process.argv.slice(2))
-const server = require('./server')
+const dedent = require('dedent')
+const port = process.env.PORT = Number(argv.port || argv.p || process.env.PORT || 3000)
 const action = argv._[0]
 
 switch (action) {
   case 'serve':
   case 'server':
-    const port = Number(argv.port || argv.p || process.env.PORT || 3000)
+    const server = require('./server')
     server.listen(port, function () {
       console.log(`listening on localhost:${port}`)
     })
     break
+  case 'seed':
+    require('./seed')()
+    break
   default:
-    usage()
-}
+    console.log(dedent`
+    \nUsage:
 
-function usage () {
-  console.log(`
-Usage:
-
-nice-registry server --port=3001
-`)
-  process.exit()
+    nice-registry server --port=3001     # starts the server
+    nice-registry seed --port=3001       # crawls and caches package data
+    `)
+    process.exit()
 }

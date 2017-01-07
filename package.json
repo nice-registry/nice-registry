@@ -20,7 +20,7 @@
     "dedent": "^0.6.0",
     "dependent-counts": "^1.0.0",
     "dependent-packages": "^2.2.2",
-    "dotenv": "^2.0.0",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "fs-extra": "^1.0.0",
     "github-url-to-object": "^2.2.6",

@@ -1,6 +1,6 @@
 # nice-registry
 
-A proxy to the npm registry that serves up nice package metadata.
+A proxy to the npm registry that serves fancied up package metadata.
 
 ## Installation
 

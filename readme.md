@@ -57,7 +57,43 @@ these qualities:
 - moves internal bookkeeping properties like `_id` and `_from` into an
   `other` object that can easily be omitted.
 
-## Design
+## HTTP API
+
+The following routes are supported:
+
+### `GET /package/:name`
+
+Fetches a single package. The following query params are allowed:
+
+
+Examples:
+
+- [/package/express](https://nice-registry/herokuapp.com/package/express)
+- [/package/choo?pick=name,description](https://nice-registry/herokuapp.com/package/express?pick=name,description)
+- [/package/trymodule?omit=readme,versions](https://nice-registry/herokuapp.com/package/trymodule?omit=readme,versions
+  )
+
+
+### `GET /packages`
+
+Fetches multiple packages by name. The following query params are allowed:
+
+- `names` (required) - a comma-delimited string of package names to fetch
+- `pick` - a comma-delimited string of properties to include in the response.
+- `omit` - a comma-delimited string of properties to omit from the response.
+
+Examples:
+
+- [/packages?names=human-interval,supertest](https://nice-registry/herokuapp.com/packages?names=human-interval,supertest)
+- [/packages/?names=react,react-dom, redux&pick=name,description](https://nice-registry/herokuapp.com/packages/?names=react,react-dom, redux&pick=name,description)
+
+## Public Server
+
+There's a public instance running on Heroku.
+
+Example URL: http://nice-registry.herokuapp.com/package/cheerio?omit=readme,versions,other,directDependents,
+
+## Running Your Own Instance
 
 This server's design follows the [12 Factor](https://12factor.net/) development
 methodology popularized by Heroku. It is stateless: that is, it does not

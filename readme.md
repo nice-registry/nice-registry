@@ -68,12 +68,18 @@ the main package data from the npm registry. Supplementary data for
 download counts, dependents, owner profiles, etc, is provided by offline
 datasets that are [automatically updated and published to npm] by bots.
 
-## Installation and Usage
+This server can optional cache responses in Redis. If you specify a `REDIS_URL`
+in the environment, then it will be used. If you don't, it won't. No
+configuration required.
 
-Install this package globally. It will add a `nice` CLI to the PATH.
+Setting up your own instance on Heroku only requires a few commands:
 
 ```sh
-npm i -g nice-registry && nice
+git clone https://github.com/nice-registry/nice-registry
+cd nice-registry
+heroku create my-nice-registry
+heroku addons:add heroku-redis
+git push heroku master
 ```
 
 ## Tests

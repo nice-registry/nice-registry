@@ -4,7 +4,7 @@ const getFullPackage = require('../lib/get-full-package')
 
 describe('Package', () => {
   it('works', (done) => {
-    new Package('express')
+    Package('express')
       .then(pkg => {
         expect(pkg).to.be.an('object')
         done()

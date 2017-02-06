@@ -13,6 +13,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
+    "owner-profiles": "^1.0.0",
+    "owners": "^1.16.0",
     "standard": "^8.6.0",
     "supertest": "^2.0.1"
   },
@@ -48,10 +50,7 @@
   },
   "scripts": {
     "start": "node -r dotenv/config script/server.js",
-    "seed": "node -r dotenv/config script/seed.js",
-    "test": "npm run test:uncached && npm run test:cached && standard",
-    "test:uncached": "rm -rf .cache && DEBUG=1 mocha -r dotenv/config",
-    "test:cached": "mocha -r dotenv/config && standard"
+    "test": "mocha -r dotenv/config && standard"
   },
   "standard": {
     "env": {

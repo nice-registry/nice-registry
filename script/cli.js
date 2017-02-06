@@ -13,15 +13,11 @@ switch (action) {
       console.log(`listening on localhost:${port}`)
     })
     break
-  case 'seed':
-    require('./seed')()
-    break
   default:
     console.log(dedent`
     \nUsage:
 
     nice-registry server --port=3001     # starts the server
-    nice-registry seed --port=3001       # crawls and caches package data
     `)
     process.exit()
 }

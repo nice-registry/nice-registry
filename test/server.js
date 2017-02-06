@@ -108,7 +108,7 @@ describe('Server', function () {
 
     it('returns profiles of npm package owners', (done) => {
       supertest(app)
-        .get('/package/component')
+        .get('/package/electron')
         .end((err, res) => {
           if (err) throw err
           const pkg = res.body
@@ -120,37 +120,36 @@ describe('Server', function () {
           expect(props).to.include('homepage')
           expect(props).to.include('github')
           expect(props).to.include('twitter')
-          expect(props).to.include('freenode')
           expect(props).to.include('gravatar')
           done()
         })
     })
 
-    it('returns metadata for GitHub repos, if token is present', (done) => {
-      supertest(app)
-        .get('/package/color-namer')
-        .end((err, res) => {
-          if (err) throw err
-          const pkg = res.body
-          const repo = pkg.githubRepo
-          expect(repo).to.exist
-          expect(repo.fullName).to.equal('zeke/color-namer')
-          done()
-        })
-    })
+    // it('returns metadata for GitHub repos, if token is present', (done) => {
+    //   supertest(app)
+    //     .get('/package/color-namer')
+    //     .end((err, res) => {
+    //       if (err) throw err
+    //       const pkg = res.body
+    //       const repo = pkg.githubRepo
+    //       expect(repo).to.exist
+    //       expect(repo.fullName).to.equal('zeke/color-namer')
+    //       done()
+    //     })
+    // })
 
-    it('returns GitHub contributors, if token is present', (done) => {
-      supertest(app)
-        .get('/package/chai')
-        .end((err, res) => {
-          if (err) throw err
-          const pkg = res.body
-          const contributors = pkg.githubContributors
-          expect(contributors).to.exist
-          expect(Object.keys(contributors[0])).to.deep.equal(['login', 'avatarUrl', `type`, `contributions`])
-          done()
-        })
-    })
+    // it('returns GitHub contributors, if token is present', (done) => {
+    //   supertest(app)
+    //     .get('/package/chai')
+    //     .end((err, res) => {
+    //       if (err) throw err
+    //       const pkg = res.body
+    //       const contributors = pkg.githubContributors
+    //       expect(contributors).to.exist
+    //       expect(Object.keys(contributors[0])).to.deep.equal(['login', 'avatarUrl', `type`, `contributions`])
+    //       done()
+    //     })
+    // })
   })
 
   describe('/packages', () => {

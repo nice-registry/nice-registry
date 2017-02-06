@@ -2,16 +2,16 @@
 
 A stateless proxy server to the npm registry that serves fancied up package metadata.
 
-## What It Does
+## How it Works
 
 This is what the server does when you fetch a package:
 
-### 1. Raw Registry Data
+#### Raw Registry Data
 
 First, the raw package metadata is fetched from `registry.npmjs.com`. This is
 the only network request made per package.
 
-### 2. Dependents
+#### Dependents
 
 The [dependent-packages] module adds dependency info for the package, without
 making a network request:
@@ -22,12 +22,12 @@ making a network request:
 - `directDevDependentsCount`
 - `totalDirectDependentsCount`
 
-### 3. Downloads
+#### Downloads
 
 The [download-counts] adds a `averageDownloadsPerDay` property to the package.
 This is also added without making a network request/
 
-### 4. Owners
+#### Owners
 
 The [owners] and [owner-profiles] packages are used to create an `owners` array
 which includes the following metadata for each npm user, as available:
@@ -42,7 +42,7 @@ which includes the following metadata for each npm user, as available:
 
 No network requests are made here either.
 
-### 5. Niceties
+#### Niceties
 
 Lastly, the resulting package object is turned into a [nice package], which has
 these qualities:

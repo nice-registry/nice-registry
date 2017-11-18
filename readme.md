@@ -1,4 +1,4 @@
-# nice-registry
+# nice-registry [EXPERIMENTAL] 🔬
 
 A stateless proxy server to the npm registry that serves fancied up package metadata.
 

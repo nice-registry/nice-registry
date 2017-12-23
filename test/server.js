@@ -108,13 +108,15 @@ describe('Server', function () {
 
     it('returns profiles of npm package owners', (done) => {
       supertest(app)
-        .get('/package/electron')
+        .get('/package/browserify')
         .end((err, res) => {
           if (err) throw err
           const pkg = res.body
           expect(pkg.owners).to.be.an('array')
           expect(pkg.owners.length).to.be.above(5)
-          const props = Object.keys(pkg.owners[0])
+          expect(pkg.owners.every(pkg => pkg && typeof pkg === 'object')).to.eq(true)
+          const owner = pkg.owners.find(owner => owner.username === 'feross')
+          const props = Object.keys(owner)
           expect(props).to.include('name')
           expect(props).to.include('email')
           expect(props).to.include('homepage')

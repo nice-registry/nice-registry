@@ -85,7 +85,7 @@ Fetches multiple packages by name. The following query params are allowed:
 Examples:
 
 - [/packages?names=human-interval,supertest](https://nice-registry.herokuapp.com/packages?names=human-interval,supertest)
-- [/packages/?names=react,react-dom, redux&pick=name,description](https://nice-registry.herokuapp.com/packages/?names=react,react-dom, redux&pick=name,description)
+- [/packages/?names=react,react-dom,redux&pick=name,description](https://nice-registry.herokuapp.com/packages/?names=react,react-dom,redux&pick=name,description)
 
 ## Public Server
 
